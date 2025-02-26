@@ -1,0 +1,182 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 1320px;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block;
+    color: black;
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-evenly {
+    justify-content: space-around;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+body {
+    font-family: 'Lato';
+}
+
+.w-1 {
+    width: 100%;
+}
+
+.w-30 {
+    width: 30%;
+}
+
+.w-50{
+    width: 50%;
+}
+
+.w-70 {
+    width: 70%;
+}
+
+/* header  */
+header {
+    background: #011e29;
+    color: white;
+    padding: 20px 0 !important;
+}
+
+header form .input-group {
+    position: relative;
+}
+
+header form .input-group .ri-search-line {
+    position: absolute;
+    top: 50%;
+    left: 2px;
+    transform: translateY(-50%);
+}
+
+header form .input-group input {
+    padding: 4px 20px;
+    background: transparent;
+    border: none;
+}
+
+header form .input-group input,
+header form .input-group input::placeholder {
+    color: white;
+}
+
+header form .input-group button {
+    color: black;
+    background: white;
+    cursor: pointer;
+    padding: 4px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+header .profile .ri-user-2-fill {
+    padding: 10px;
+    border: 2px solid white;
+    border-radius: 50%;
+    color: white;
+    margin-left: 30px;
+}
+
+header .home a i {
+    color: white;
+    font-size: 24px;
+    margin-right: 30px;
+}
+
+/* Category */
+.nav {
+    padding: 10px 0;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.nav ul li {
+    margin: 0 8px;
+}
+
+.nav ul li a {
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Heading */
+main .heading {
+    margin: 20px 0;
+    text-shadow: 2px 2px #FF0000;
+}
+
+/* Blog */
+main .card {
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    height: 170px;
+    padding: 10px;
+    position: relative;
+    transition: all 0.2s linear;
+    &:hover{
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+}
+main .card span{
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: #00b1cd;
+}
+
+main .card .blog-details, main .card .blog-Img{
+    padding: 10px;
+}
+
+main .card .blog-details h2{
+    font-size: 18px;
+}
+main .card .blog-Img img{
+    width: 180px;
+    height: 100px;
+    border-radius: 5px;
+}

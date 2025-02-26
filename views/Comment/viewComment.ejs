@@ -1,0 +1,80 @@
+<%- include('../Layouts/Header') %>
+    <!--begin::App Main-->
+    <main class="app-main">
+        <!--begin::App Content Header-->
+        <div class="app-content-header">
+            <!--begin::Container-->
+            <div class="container-fluid">
+                <!--begin::Row-->
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h3 class="mb-0">View Comments</h3>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-end">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">View Comments</li>
+                        </ol>
+                    </div>
+                </div>
+                <!--end::Row-->
+            </div>
+            <!--end::Container-->
+        </div>
+        <!--end::App Content Header-->
+        <!--begin::App Content-->
+        <div class="app-content">
+            <!--begin::Container-->
+            <div class="container-fluid">
+                <div class="card mb-4">
+                    <div class="card-header row">
+                        <h3 class="card-title col-sm-6">Comments</h3>
+                        <tr>
+                            <td></td>
+                            <td>
+                                No.
+                            </td>
+                            <td>
+                                Comment Name
+                            </td>
+                            <td class="">
+                                Comment Status
+                            </td>
+                            <td class="col-4">
+                               Comment Image
+                            </td>
+                            <td>Comment description</td>
+                        </tr>
+                        <% allComments.map((v, i)=> { %>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <%= i+1 %>
+                                </td>
+                                <td>
+                                    <%= v.name %>
+                                </td>
+                                <td class="<%= v.status? 'text-success':'text-danger'  %>">
+                                    <%= v.status %>
+                                </td>
+                                <td class="col-4">
+                                    <img src="<%= v.image %>" class="col-4" height="300">
+                                </td>
+                                <td><%- v.comments %></td>
+                            </tr>
+                            <% })%>
+                    </div>
+                    <!-- /.card-header -->
+
+                    <!-- /.card-body -->
+
+
+
+                </div>
+            </div>
+            <!--end::Container-->
+        </div>
+        <!--end::App Content-->
+    </main>
+    <!--end::App Main-->
+    <%- include('../Layouts/Footer') %>

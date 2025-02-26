@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Header</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        /* Body */
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Header Styling */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #333;
+            color: white;
+        }
+
+        /* Logo */
+        .logo a {
+            font-size: 1.8rem;
+            color: white;
+
+            font-weight: bold;
+        }
+
+        /* Navigation */
+        .nav-list {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-list li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.3rem;
+        }
+
+        /* Blog Section Styling */
+        .blogs {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .blog-item {
+            width: 630px;
+            height: 200px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding: 20px;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .blog-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            width: 24rem;
+            text-align: justify;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .blog-description {
+            font-size: 1rem;
+            color: #777;
+            margin-bottom: 10px;
+            width: 23rem;
+            text-align: justify;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .blog-category {
+            font-weight: bold;
+            color: #f39c12;
+        }
+
+        .pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pagination a {
+            margin-right: 10px;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        li input {
+            padding: 5px;
+            border-radius: 5px;
+            outline: none;
+            border: none;
+        }
+
+        li button {
+            padding: 5px 8px;
+            font-size: 15px;
+            border-radius: 8px;
+            border: none;
+            background-color: #f39c12;
+            color: white;
+        }
+
+        .categories {
+            background-color: white;
+            padding: 30px;
+            margin-right: 17rem;
+            text-align: center;
+            width: 360px;
+            margin-top: 80px;
+        }
+
+        .group {
+            display: flex;
+        }
+
+        main {
+            padding: 0 80px;
+        }
+
+        .categories-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            text-decoration: underline;
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 20px;
+            height: 70px;
+        }
+
+        .blog-image {
+            margin-right: 20px;
+        }
+
+        .sorting {
+            text-align: right;
+            display: flex;
+            justify-content: end;
+            width: 100%;
+        }
+
+        .sorting button {
+            padding: 3px 10px;
+            font-size: 18px;
+            font-weight: 800;
+            border-radius: 8px;
+            border: none;
+            background-color: #f39c12;
+            color: white;
+        }
+
+        .sorting select {
+            width: 100px;
+            padding: 3px 10px;
+            outline: none;
+            font-size: 15px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo"><a href="/">Divya Bhaskar</a></div>
+        <nav class="nav">
+            <ul class="nav-list">
+                <li>
+                    <form>
+                        <input type="text" name="search" placeholder="Search Blogs">
+                        <button>Search</button>
+                    </form>
+                </li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="/dashboard">Add Blogs</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <main>
+        <div class="group">
+            <div class="categories">
+                <h2>Categories</h2>
+                <div class="categories-group">
+                    <a href="/">All Categories</a>
+                    <% categories.map((value)=>{ %>
+                        <a href="?catId=<%=value.id%>">
+                            <%= value.categoryName%>(<%= value.Blog_Ids.length %>)
+                        </a>
+                        <%})%>
+                </div>
+            </div>
+
+            <div class="blogs">
+                <div class="sorting">
+                    <form>
+                        <select name="sort">
+                            <option value="">--Filter--</option>
+                            <option value="asc">Ascending</option>
+                            <option value="desc">Descending</option>
+                        </select>
+                        <button type="submit">Filter</button>
+                    </form>
+                </div>
+                <% allBlogs.map((value, index)=> { %>
+                    <div class="blog-item">
+                        <div class="blog-image">
+                            <img src="<%=value.blogImage%>" alt="" height="100">
+                        </div>
+                        <div>
+                            <div class="blog-title"><a href="/singleBlog/?id=<%=value.id%>">
+                                    <%= value.blogTitle %>
+                                </a></div>
+                            <div class="blog-description">
+                                <%- value.description.slice(0, 150) %>...
+                            </div>
+                            <div class="blog-meta">
+                                <span>
+                                    <%= new Date(value.createdAt).toLocaleDateString() %>
+                                </span>
+                                <span class="blog-category">
+                                    <%= value.categoryName %>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+            </div>
+        </div>
+        <div class="pagination">
+            <div>
+                <%if(page>0){%>
+                    <a href="/?page=(page-1)&search=<%=search%>">
+                        Prev
+                    </a>
+                    <% } %>
+
+            </div>
+
+            <div>
+                <% for(let i=0;i<=totalPage-1;i++){%>
+                    <a href="/?page=<%=i%>&search=<%=search%>">
+                        <%=i+1%>
+                    </a>
+                    <% } %>
+            </div>
+
+            <div>
+                <%if(page < totalPage){%>
+                    <a href="/?page=page+1&search=<%=search%>">
+                        Next
+                    </a>
+                    <% } %>
+
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>

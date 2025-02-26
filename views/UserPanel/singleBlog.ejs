@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+        }
+
+        .blog-container {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            margin: 9rem 0;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-post {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .blog-header {
+            text-align: center;
+        }
+
+        .blog-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .blog-meta {
+            font-size: 1rem;
+            color: #777;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .blog-category {
+            font-weight: bold;
+            color: #f39c12;
+        }
+
+        .blog-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-top: 20px;
+            color: #555;
+        }
+
+        img {
+            height: 300px;
+            width: 720px;
+            background-size: cover;
+        }
+
+        .img-div {
+            height: 300px;
+
+            margin: 40px 0;
+            display: inline-block;
+        }
+
+        .categories-name {
+            color: #555;
+        }
+
+        .form-section {
+            margin-top: 30px;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h4 {
+            margin: 10px 0 5px;
+        }
+
+        input[type="text"],
+        input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .user-info {
+            border: 1px solid #ccc;
+            padding: 20px;
+            max-width: 600px;
+            margin: 17px auto;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-info h2 {
+            text-align: center;
+        }
+
+        .user-info p {
+            margin: 10px 0;
+        }
+
+        .user-info img {
+            display: block;
+            margin: 10px auto;
+            max-width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="blog-container">
+        <div class="blog-post">
+            <header class="blog-header">
+                <h1 class="blog-title">
+                    <%=singleBlog.title%>
+                </h1>
+                <p class="blog-meta">
+                    <span class="blog-date">Date : <%= new Date(singleBlog.createdAt).toLocaleDateString() %></span>||
+                    <span class="blog-category"><span class="categories-name">Category :</span>
+                        <%=singleBlog.categoryId.categoryName%>
+                    </span>
+                </p>
+            </header>
+            <div class="img-div">
+                <img src="<%=singleBlog.blogImage%>">
+            </div>
+            <section class="blog-content">
+                <p class="blog-description">
+                    <%-singleBlog.description%>
+                </p>
+            </section>
+            <section class="form-section">
+                <h2>Add a Comment</h2>
+                <form action="/addComment" enctype="multipart/form-data" method="post">
+                    <input type="hidden" name="blogId" value="<%=singleBlog.id%>">
+                    <h4>
+                        Name:
+                    </h4>
+                    <input type="text" name="name">
+                    <h4>
+                        Email:
+                    </h4>
+                    <input type="text" name="email">
+                    <h4>
+                        comments:
+                    </h4>
+                    <input type="text" name="comments">
+                    <h4>
+                        Image:
+                    </h4>
+                    <input type="file" name="image">
+                    <button type="submit">Add Comment</button>
+                </form>
+            </section>
+            <section>
+                <% allComments.map((value)=>{%>
+                    <div class="user-info">
+                        <h2>Comments:</h2>
+                        <p><span class="field">Name:</span>
+                            <%= value.name%>
+                        </p>
+                        <p><span class="field">Image:</span><br><img src="<%= value.image%>" ></p>
+                        <p><span class="field">Comments:</span>
+                            <%= value.comments%>
+                        </p>
+                        <p><span class="field">Email:</span>
+                            <%= value.email%>
+                        </p>
+                        <p><span class="field">Created At:</span>
+                            <%= new Date( value.createdAt).toLocaleDateString() %>
+                        </p>
+                    </div>
+                    <% }) %>
+            </section>
+        </div>
+    </div>
+</body>
+
+</html>

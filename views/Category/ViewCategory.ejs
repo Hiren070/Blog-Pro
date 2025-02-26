@@ -1,0 +1,80 @@
+<%- include('../Layouts/Header') %>
+
+      <!--begin::App Main-->
+      <main class="app-main">
+        <!--begin::App Content Header-->
+        <div class="app-content-header">
+          <!--begin::Container-->
+          <div class="container-fluid">
+            <!--begin::Row-->
+            <div class="row">
+              <div class="col-sm-6"><h3 class="mb-0">View Category</h3></div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">View Category</li>
+                </ol>
+              </div>
+            </div>
+            <!--end::Row-->
+          </div>
+          <!--end::Container-->
+        </div>
+        <!--end::App Content Header-->
+        <!--begin::App Content-->
+        <div class="app-content">
+          <!--begin::Container-->
+          <div class="container-fluid">
+            <div class="card mb-4">
+              <div class="card-header row">
+                <h3 class="card-title col-sm-4">Category Data Table</h3>
+
+            </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th style="width: 10px">#</th>
+                      <th>Category Name</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <% CategoryData.map((v, i) => { %>
+                           <tr>
+                               <td><%= i+1 %></td>
+                               <td><%= v.categoryName %></td>
+                               
+                               <td>
+                                   <a href="/dashboard/deleteCategory/?categoryId=<%= v.id %>"><i class="bi bi-trash"></i></a> ||
+                                   <a href="/dashboard/updateCategory/<%= v.id %>"><i class="bi bi-pencil-square"></i></a>
+                               </td>
+                           </tr>
+                      <% })%>
+                   </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+
+                <nav aria-label="..." class="d-flex justify-content-center mt-2">
+                  <ul class="pagination">
+                    <li class="page-item"><a class="page-link <%= parseInt(Page) <= 0 ? 'disabled' : '' %>" href="?page=<%= parseInt(Page) -1 %>">Previous</a></li>
+                    <li class="page-item" aria-current="page">
+                      <a class="page-link" href="?page=<%= Page %>"><%= parseInt(Page) + 1 %></a>
+                    </li>
+                    <li class="page-item"><a class="page-link <%= parseInt(Page) == TotalCounts-1 ? 'disabled' : '' %>"" href="?page=<%= parseInt(Page) + 1 %>">Next</a></li>
+                  </ul>
+                </nav>
+                
+            </div>
+          </div>
+          <!--end::Container-->
+        </div>
+        <!--end::App Content-->
+      </main>
+      <!--end::App Main-->
+
+<%- include('../Layouts/Footer') %>
